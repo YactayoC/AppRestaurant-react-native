@@ -70,7 +70,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           <Text style={styles.text_option} onPress={() => navigation.navigate('Register')}>
             ¿No tienes cuenta? Registrate
           </Text>
-          <Text style={styles.text_option} onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.text_option} onPress={() => navigation.navigate('HomeMain')}>
             Ingresar sin usuario
           </Text>
         </View>

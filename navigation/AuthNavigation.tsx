@@ -7,7 +7,7 @@ import HomeTabNavigator from './HomeTabNavigator';
 export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
-  Home: undefined;
+  HomeMain: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -18,7 +18,7 @@ export default function AuthNavigation() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={HomeTabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="HomeMain" component={HomeTabNavigator} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
