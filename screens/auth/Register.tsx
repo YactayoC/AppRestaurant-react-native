@@ -28,7 +28,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
-      <Image style={styles.logo} source={require('../../assets/auth/logo-white.png')} />
+      <Image style={styles.logo} source={require('../../assets/images/auth/logo-white.png')} />
       <View style={styles.form}>
         <View style={styles.form_group}>
           <Controller
