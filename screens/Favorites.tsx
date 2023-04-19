@@ -1,17 +1,13 @@
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { ScreenInfo } from '../components';
+import { ScreenInfo, Search } from '../components';
 
 export default function FavoritsScreen() {
   return (
     <View style={styles.container}>
       <ScreenInfo titleScreen="Favoritos" />
-
-      <View style={styles.search}>
-        <Icon style={styles.search_icon} name="search-outline" size={20} color="#000" />
-        <TextInput style={styles.search_input} placeholder="Buscar plato favorito" />
-      </View>
+      <Search placeholder="Busca tu plato favorito" />
 
       <View style={styles.dishes}>
         <ScrollView
@@ -85,26 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f7f9',
     paddingVertical: 20,
     paddingHorizontal: 20,
-  },
-
-  search: {
-    width: '100%',
-    backgroundColor: '#f2f2f2',
-    position: 'relative',
-    justifyContent: 'center',
-    borderRadius: 15,
-    marginTop: 30,
-  },
-
-  search_icon: {
-    position: 'absolute',
-    left: 10,
-  },
-
-  search_input: {
-    paddingLeft: 40,
-    fontSize: 16,
-    paddingVertical: 12,
   },
 
   dishes: {

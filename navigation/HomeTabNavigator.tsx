@@ -1,11 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Favorites, Home } from '../screens';
+import { Favorites, Home, Offers } from '../screens';
 
 export type RootTabParamList = {
   Home: undefined;
   Favorites: undefined;
-  offers: undefined;
-  cart: undefined;
+  Offers: undefined;
+  Cart: undefined;
   Profile: undefined;
 };
 
@@ -16,6 +16,8 @@ export default function HomeTabNavigator() {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="Favorites" component={Favorites} options={{ headerShown: false }} />
+      <Tab.Screen name="Offers" component={Offers} options={{ headerShown: false }} />
+      <Tab.Screen name="Cart" component={Favorites} options={{ headerShown: false }} />
       <Tab.Screen name="Profile" component={Home} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
