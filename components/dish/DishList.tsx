@@ -1,19 +1,19 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import IconFa from 'react-native-vector-icons/FontAwesome5';
 
 interface Props {
   title: string;
   areProductsOnOffert?: boolean;
 }
 
-export default function Dishes({ title, areProductsOnOffert = false }: Props) {
+export default function DishList({ title, areProductsOnOffert = false }: Props) {
   return (
     <View style={[styles.dishes, { height: '100%' }]}>
-      <Text style={styles.dishes_title}>{title}</Text>
+      {title !== '' && <Text style={styles.dishes_title}>{title}</Text>}
       <ScrollView showsVerticalScrollIndicator={false} bounces={false} alwaysBounceVertical={false}>
         <View style={styles.dishes_main_container}>
           <View style={styles.dish_main}>
-            <Image style={styles.dish_image} source={require('../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.dish_image} source={require('../../assets/images/dishes/main/main.jpg')} />
             <View style={styles.dish_content}>
               <Text style={styles.dish_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.dish_data}>
@@ -35,13 +35,15 @@ export default function Dishes({ title, areProductsOnOffert = false }: Props) {
                   </View>
                 )}
 
-                <Icon style={styles.dish_cart} name="cart-outline" size={20} color="#ffffff" />
+                <TouchableOpacity style={styles.dish_cart}>
+                  <IconFa name={'shopping-bag'} size={20} color="#ffffff" />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
 
           <View style={styles.dish_main}>
-            <Image style={styles.dish_image} source={require('../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.dish_image} source={require('../../assets/images/dishes/main/main.jpg')} />
             <View style={styles.dish_content}>
               <Text style={styles.dish_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.dish_data}>
@@ -63,13 +65,15 @@ export default function Dishes({ title, areProductsOnOffert = false }: Props) {
                   </View>
                 )}
 
-                <Icon style={styles.dish_cart} name="cart-outline" size={20} color="#ffffff" />
+                <TouchableOpacity style={styles.dish_cart}>
+                  <IconFa name={'shopping-bag'} size={20} color="#ffffff" />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
 
           <View style={styles.dish_main}>
-            <Image style={styles.dish_image} source={require('../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.dish_image} source={require('../../assets/images/dishes/main/main.jpg')} />
             <View style={styles.dish_content}>
               <Text style={styles.dish_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.dish_data}>
@@ -91,13 +95,15 @@ export default function Dishes({ title, areProductsOnOffert = false }: Props) {
                   </View>
                 )}
 
-                <Icon style={styles.dish_cart} name="cart-outline" size={20} color="#ffffff" />
+                <TouchableOpacity style={styles.dish_cart}>
+                  <IconFa name={'shopping-bag'} size={20} color="#ffffff" />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
 
           <View style={styles.dish_main}>
-            <Image style={styles.dish_image} source={require('../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.dish_image} source={require('../../assets/images/dishes/main/main.jpg')} />
             <View style={styles.dish_content}>
               <Text style={styles.dish_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.dish_data}>
@@ -119,63 +125,9 @@ export default function Dishes({ title, areProductsOnOffert = false }: Props) {
                   </View>
                 )}
 
-                <Icon style={styles.dish_cart} name="cart-outline" size={20} color="#ffffff" />
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.dish_main}>
-            <Image style={styles.dish_image} source={require('../assets/images/dishes/main/main.jpg')} />
-            <View style={styles.dish_content}>
-              <Text style={styles.dish_name}>Sopa de pescado y marisco peruana</Text>
-              <View style={styles.dish_data}>
-                {areProductsOnOffert ? (
-                  <View style={styles.dish_price_offert}>
-                    <View style={styles.dish_price_real}>
-                      <Text style={styles.dish_price_real_money}>S/</Text>
-                      <Text style={styles.dish_price_real_number}>20.00</Text>
-                    </View>
-                    <View style={styles.dish_price_discount}>
-                      <Text style={styles.dish_price_discount_money}>S/</Text>
-                      <Text style={styles.dish_price_discount_number}>10.00</Text>
-                    </View>
-                  </View>
-                ) : (
-                  <View style={styles.dish_price}>
-                    <Text style={styles.dish_price_money}>S/</Text>
-                    <Text style={styles.dish_price_number}>20.00</Text>
-                  </View>
-                )}
-
-                <Icon style={styles.dish_cart} name="cart-outline" size={20} color="#ffffff" />
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.dish_main}>
-            <Image style={styles.dish_image} source={require('../assets/images/dishes/main/main.jpg')} />
-            <View style={styles.dish_content}>
-              <Text style={styles.dish_name}>Sopa de pescado y marisco peruana</Text>
-              <View style={styles.dish_data}>
-                {areProductsOnOffert ? (
-                  <View style={styles.dish_price_offert}>
-                    <View style={styles.dish_price_real}>
-                      <Text style={styles.dish_price_real_money}>S/</Text>
-                      <Text style={styles.dish_price_real_number}>20.00</Text>
-                    </View>
-                    <View style={styles.dish_price_discount}>
-                      <Text style={styles.dish_price_discount_money}>S/</Text>
-                      <Text style={styles.dish_price_discount_number}>10.00</Text>
-                    </View>
-                  </View>
-                ) : (
-                  <View style={styles.dish_price}>
-                    <Text style={styles.dish_price_money}>S/</Text>
-                    <Text style={styles.dish_price_number}>20.00</Text>
-                  </View>
-                )}
-
-                <Icon style={styles.dish_cart} name="cart-outline" size={20} color="#ffffff" />
+                <TouchableOpacity style={styles.dish_cart}>
+                  <IconFa name={'shopping-bag'} size={20} color="#ffffff" />
+                </TouchableOpacity>
               </View>
             </View>
           </View>

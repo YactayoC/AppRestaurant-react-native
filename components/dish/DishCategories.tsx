@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function DishCategories() {
   return (
@@ -13,26 +13,35 @@ export default function DishCategories() {
         alwaysBounceHorizontal={false}
       >
         <View style={styles.category_card_container}>
-          <View style={styles.category_card_green}>
+          <TouchableOpacity style={styles.category_card_green}>
             <Text style={styles.category_name}>Mariscos</Text>
-            <Image style={styles.category_image} source={require('../assets/images/dishes/category/mariscos.jpeg')} />
-          </View>
-          <View style={styles.category_card_pink}>
+            <Image
+              style={styles.category_image}
+              source={require('../../assets/images/dishes/category/mariscos.jpeg')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.category_card_pink}>
             <Text style={styles.category_name}>Fuentes</Text>
-            <Image style={styles.category_image} source={require('../assets/images/dishes/category/fuentes.jpg')} />
-          </View>
-          <View style={styles.category_card_blue}>
+            <Image style={styles.category_image} source={require('../../assets/images/dishes/category/fuentes.jpg')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.category_card_blue}>
             <Text style={styles.category_name}>Porciones</Text>
-            <Image style={styles.category_image} source={require('../assets/images/dishes/category/porcion.jpg')} />
-          </View>
-          <View style={styles.category_card_green}>
+            <Image style={styles.category_image} source={require('../../assets/images/dishes/category/porcion.jpg')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.category_card_green}>
             <Text style={styles.category_name}>xariscos2</Text>
-            <Image style={styles.category_image} source={require('../assets/images/dishes/category/mariscos.jpeg')} />
-          </View>
-          <View style={styles.category_card_blue}>
+            <Image
+              style={styles.category_image}
+              source={require('../../assets/images/dishes/category/mariscos.jpeg')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.category_card_blue}>
             <Text style={styles.category_name}>Jariscos3</Text>
-            <Image style={styles.category_image} source={require('../assets/images/dishes/category/mariscos.jpeg')} />
-          </View>
+            <Image
+              style={styles.category_image}
+              source={require('../../assets/images/dishes/category/mariscos.jpeg')}
+            />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

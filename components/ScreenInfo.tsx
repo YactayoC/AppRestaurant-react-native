@@ -4,16 +4,24 @@ import Icon from 'react-native-vector-icons/Ionicons';
 interface Props {
   showBack?: boolean;
   titleScreen: string;
+  isLogged?: boolean;
+  showProfileImage?: boolean;
 }
 
-export default function ScreenInfo({ showBack, titleScreen }: Props) {
+export default function ScreenInfo({ showBack, titleScreen, isLogged = true, showProfileImage = true }: Props) {
   return (
     <Animated.View style={styles.screen}>
       <View style={styles.screen_info}>
         {showBack && <Icon name="chevron-back-outline" size={30} color="#000" />}
         <Text style={styles.screen_title}>{titleScreen}</Text>
       </View>
-      <Image style={styles.screen_image} source={require('../assets/images/profile/profile_2.jpeg')} />
+      {showProfileImage ? (
+        isLogged ? (
+          <Image style={styles.screen_image} source={require('../assets/images/profile/profile_2.jpeg')} />
+        ) : (
+          <Icon name="person-outline" size={30} color="#000" />
+        )
+      ) : null}
     </Animated.View>
   );
 }
@@ -23,6 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    height: 40,
   },
 
   screen_info: {
