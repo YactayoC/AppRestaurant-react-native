@@ -1,14 +1,14 @@
 import { StyleSheet, View } from 'react-native';
-import { DishCategories, Dishes, ScreenInfo, Search } from '../components';
+import { ProductCategories, ProductList, ScreenInfo, Search } from '../../components';
 
-export default function Offers() {
+export default function OffersScreen() {
   return (
     <View style={styles.container}>
-      <ScreenInfo titleScreen="Ofertas" />
+      <ScreenInfo titleScreen="Ofertas" isLogged={true} />
 
       <Search placeholder="Busca platos en ofertas" />
-      <DishCategories />
-      <Dishes title="Platos en oferta" areProductsOnOffert={true} />
+      <ProductCategories />
+      <ProductList title="Platos en oferta" areProductsOnOffert={true} />
     </View>
   );
 }

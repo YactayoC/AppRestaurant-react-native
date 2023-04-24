@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { ScreenInfo } from '../components';
 
-export default function Cart() {
+import { ScreenInfo } from '../../components';
+
+export default function CartScreen() {
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <View style={styles.container}>
       <ScreenInfo titleScreen="Carrito" />
@@ -10,7 +14,7 @@ export default function Cart() {
       <ScrollView showsVerticalScrollIndicator={false} bounces={false} alwaysBounceVertical={false}>
         <View style={styles.carts_products}>
           <View style={styles.cart_product}>
-            <Image style={styles.cart_product_image} source={require('../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.cart_product_image} source={require('../../assets/images/dishes/main/main.jpg')} />
             <View style={styles.cart_product_text}>
               <Text style={styles.cart_product_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.cart_product_price}>
@@ -23,19 +27,25 @@ export default function Cart() {
                 <Text style={styles.cart_product_options_button_text}>Eliminar</Text>
               </TouchableOpacity>
               <View style={styles.cart_product_options_quantity}>
-                <View style={styles.cart_product_options_quantity_icon}>
+                <TouchableOpacity
+                  style={styles.cart_product_options_quantity_icon}
+                  onPress={() => setQuantity(quantity + 1)}
+                >
                   <Icon name="add" size={20} color="#000" />
-                </View>
-                <Text>3</Text>
-                <View style={styles.cart_product_options_quantity_icon}>
+                </TouchableOpacity>
+                <Text>{quantity}</Text>
+                <TouchableOpacity
+                  style={styles.cart_product_options_quantity_icon}
+                  onPress={() => setQuantity(quantity - 1)}
+                >
                   <Icon name="remove" size={20} color="#000" />
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
 
           <View style={styles.cart_product}>
-            <Image style={styles.cart_product_image} source={require('../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.cart_product_image} source={require('../../assets/images/dishes/main/main.jpg')} />
             <View style={styles.cart_product_text}>
               <Text style={styles.cart_product_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.cart_product_price}>
@@ -48,26 +58,30 @@ export default function Cart() {
                 <Text style={styles.cart_product_options_button_text}>Eliminar</Text>
               </TouchableOpacity>
               <View style={styles.cart_product_options_quantity}>
-                <View style={styles.cart_product_options_quantity_icon}>
+                <TouchableOpacity style={styles.cart_product_options_quantity_icon}>
                   <Icon name="add" size={20} color="#000" />
-                </View>
+                </TouchableOpacity>
                 <Text>3</Text>
-                <View style={styles.cart_product_options_quantity_icon}>
+                <TouchableOpacity style={styles.cart_product_options_quantity_icon}>
                   <Icon name="remove" size={20} color="#000" />
-                </View>
+                </TouchableOpacity>
               </View>
-            </View>
-          </View>
-
-          <View style={styles.total}>
-            <Text style={styles.total_text}>Total: </Text>
-            <View style={styles.total_price}>
-              <Text style={styles.total_price_money}>S/</Text>
-              <Text style={styles.total_price_number}>50.00</Text>
             </View>
           </View>
         </View>
       </ScrollView>
+
+      <View style={styles.total}>
+        <Text style={styles.total_text}>Total: </Text>
+        <View style={styles.total_price}>
+          <Text style={styles.total_price_money}>S/</Text>
+          <Text style={styles.total_price_number}>50.00</Text>
+        </View>
+      </View>
+
+      <TouchableOpacity style={styles.pay}>
+        <Text style={styles.pay_text}>Pagar ahora</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -168,6 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     columnGap: 10,
+    marginTop: 20,
   },
 
   total_text: {
@@ -191,5 +206,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingLeft: 16,
     fontSize: 20,
+  },
+
+  pay: {
+    backgroundColor: '#000',
+    width: '100%',
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+
+  pay_text: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });

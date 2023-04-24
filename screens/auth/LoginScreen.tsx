@@ -1,27 +1,24 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm, Controller } from 'react-hook-form';
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { RootStackParamList } from '../../navigation/AuthNavigation';
-
-type RegisterScreenProps = {
-  navigation: StackNavigationProp<RootStackParamList, 'Login'>;
-};
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../navigation/RootNavigation';
 
 interface FormData {
-  fullName: string;
   email: string;
   password: string;
 }
 
-export default function RegisterScreen({ navigation }: RegisterScreenProps) {
+export default function LoginScreen() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList, 'Auth'>>();
 
-  const onRegister = (data: FormData) => {
+  const onLogin = (data: FormData) => {
     console.log(data);
   };
 
@@ -30,23 +27,6 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <Image style={styles.logo} source={require('../../assets/images/auth/logo-white.png')} />
       <View style={styles.form}>
-        <View style={styles.form_group}>
-          <Controller
-            control={control}
-            rules={{ required: true }}
-            name="fullName"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                style={styles.form_input}
-                placeholder="Nombres"
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-          {errors.fullName && <Text style={styles.text_error}>Este campo es requerido</Text>}
-        </View>
         <View style={styles.form_group}>
           <Controller
             control={control}
@@ -62,7 +42,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
               />
             )}
           />
-          {errors.password && <Text style={styles.text_error}>Este campo es requerido</Text>}
+          {errors.email && <Text style={styles.text_error}>Este campo es requerido</Text>}
         </View>
         <View style={styles.form_group}>
           <Controller
@@ -81,12 +61,15 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
           />
           {errors.password && <Text style={styles.text_error}>Este campo es requerido</Text>}
         </View>
-        <TouchableOpacity style={styles.button} onPress={handleSubmit(onRegister)}>
-          <Text style={styles.buttonText}>Registrarse</Text>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit(onLogin)}>
+          <Text style={styles.buttonText}>Ingresar</Text>
         </TouchableOpacity>
         <View style={styles.texts_options}>
-          <Text style={styles.text_option} onPress={() => navigation.navigate('Login')}>
-            ¿Ya tienes cuenta? Inicia sesion
+          <Text style={styles.text_option} onPress={() => navigation.navigate('Auth', { screen: 'Register' })}>
+            ¿No tienes cuenta? Registrate
+          </Text>
+          <Text style={styles.text_option} onPress={() => navigation.navigate('Main', { screen: 'Home' })}>
+            Ingresar sin usuario
           </Text>
         </View>
       </View>
@@ -118,7 +101,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 50,
     borderTopStartRadius: 50,
     paddingVertical: 30,
-    rowGap: 40,
+    rowGap: 50,
   },
   form_group: {
     width: '85%',

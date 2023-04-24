@@ -1,7 +1,11 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RootStackParamList } from '../../navigation/RootNavigation';
 
-export default function DishCategories() {
+export default function ProductCategories() {
+  const navigation: NavigationProp<RootStackParamList> = useNavigation();
+
   return (
     <View style={styles.category}>
       <Text style={styles.category_title}>Categorias</Text>
@@ -13,7 +17,10 @@ export default function DishCategories() {
         alwaysBounceHorizontal={false}
       >
         <View style={styles.category_card_container}>
-          <TouchableOpacity style={styles.category_card_green}>
+          <TouchableOpacity
+            style={styles.category_card_green}
+            onPress={() => navigation.navigate('DishInternal', { screen: 'DishesByCategory' })}
+          >
             <Text style={styles.category_name}>Mariscos</Text>
             <Image
               style={styles.category_image}

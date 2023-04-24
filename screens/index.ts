@@ -1,6 +1,9 @@
-export { default as Cart } from './Cart';
-export { default as Favorites } from './Favorites';
-export { default as Home } from './Home';
-export { default as Offers } from './Offers';
-export { default as Login } from './auth/Login';
-export { default as Register } from './auth/Register';
+export { default as LoginScreen } from './auth/LoginScreen';
+export { default as RegisterScreen } from './auth/RegisterScreen';
+export { default as CartScreen } from './main/CartScreen';
+export { default as FavoritesScreen } from './main/FavoritesScreen';
+export { default as HomeScreen } from './main/HomeScreen';
+export { default as OffersScreen } from './main/OffersScreen';
+export { default as ProfileScreen } from './main/ProfileScreen';
+export { default as ProductScreen } from './main/dish/ProductScreen';
+export { default as ProductsCategoryScreen } from './main/dish/ProductsCategoryScreen';

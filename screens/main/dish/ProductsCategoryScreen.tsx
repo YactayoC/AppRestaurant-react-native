@@ -1,13 +1,13 @@
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { DishCategories, Dishes, ScreenInfo, Search } from '../components';
+import { ScreenInfo, Search, ProductList } from '../../../components';
 
-export default function HomeScreen() {
+export default function ProductsCategoryScreen() {
   return (
     <View style={styles.container}>
-      <ScreenInfo titleScreen="Hola Sebastian 👋" />
+      <ScreenInfo titleScreen="Categoria de mariscos" showBack={true} />
       <Search placeholder="Que te gustaria comer hoy?" />
-      <DishCategories />
-      <Dishes title="Platos principales" />
+      <ProductList title="" />
     </View>
   );
 }

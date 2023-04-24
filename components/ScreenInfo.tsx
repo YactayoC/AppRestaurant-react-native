@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -9,10 +10,12 @@ interface Props {
 }
 
 export default function ScreenInfo({ showBack, titleScreen, isLogged = true, showProfileImage = true }: Props) {
+  const navigation = useNavigation();
+
   return (
     <Animated.View style={styles.screen}>
       <View style={styles.screen_info}>
-        {showBack && <Icon name="chevron-back-outline" size={30} color="#000" />}
+        {showBack && <Icon name="chevron-back-outline" size={30} color="#000" onPress={() => navigation.goBack()} />}
         <Text style={styles.screen_title}>{titleScreen}</Text>
       </View>
       {showProfileImage ? (
