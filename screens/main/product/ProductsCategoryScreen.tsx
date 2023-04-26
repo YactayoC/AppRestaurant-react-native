@@ -1,6 +1,7 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
 import { ScreenInfo, Search, ProductList } from '../../../components';
+import { Colors } from '../../../models/theme';
 
 export default function ProductsCategoryScreen() {
   return (
@@ -15,7 +16,7 @@ export default function ProductsCategoryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7f9',
+    backgroundColor: Colors.gray,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },

@@ -1,5 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+
 import Product from './Product';
+import { products } from '../../products';
 
 interface Props {
   title: string;
@@ -7,22 +9,14 @@ interface Props {
 }
 
 export default function ProductList({ title, areProductsOnOffert = false }: Props) {
-  const data = [
-    { key: '1', name: 'Item 1' },
-    { key: '2', name: 'Item 2' },
-    { key: '3', name: 'Item 3' },
-    { key: '4', name: 'Item 4' },
-    { key: '5', name: 'Item 5' },
-  ];
-
   return (
-    <View style={styles.dishes}>
-      {title !== '' && <Text style={styles.dishes_title}>{title}</Text>}
+    <View style={styles.products}>
+      {title !== '' && <Text style={styles.products_title}>{title}</Text>}
 
       <FlatList
-        data={data}
-        renderItem={(item) => <Product item={item} areProductsOnOffert={true} />}
-        keyExtractor={(item) => item.key.toString()}
+        data={products}
+        renderItem={({ item }) => <Product product={item} areProductsOnOffert={areProductsOnOffert} />}
+        keyExtractor={(item) => item.name}
         style={{ flex: 1 }}
         nestedScrollEnabled={true}
         numColumns={2}
@@ -35,13 +29,12 @@ export default function ProductList({ title, areProductsOnOffert = false }: Prop
 }
 
 const styles = StyleSheet.create({
-  dishes: {
+  products: {
     flex: 1,
     rowGap: 15,
     marginTop: 30,
   },
-
-  dishes_title: {
+  products_title: {
     fontSize: 20,
     fontWeight: 'bold',
   },

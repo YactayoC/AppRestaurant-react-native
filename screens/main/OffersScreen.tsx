@@ -1,5 +1,7 @@
 import { StyleSheet, View } from 'react-native';
+
 import { ProductCategories, ProductList, ScreenInfo, Search } from '../../components';
+import { Colors } from '../../models/theme';
 
 export default function OffersScreen() {
   return (
@@ -16,7 +18,7 @@ export default function OffersScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7f9',
+    backgroundColor: Colors.gray,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },

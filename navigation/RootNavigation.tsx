@@ -1,31 +1,25 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import AuthNavigation, { AuthStackParamList } from './AuthNavigation';
-import HomeTabNavigator, { HomeTabParamList } from './HomeTabNavigation';
-import DishNavigation, { DishStackParamList } from './DishNavigation';
+import AuthNavigation, { AuthNativeStackParamList } from './AuthNavigation';
+import HomeTabNavigation, { HomeTabParamList } from './HomeTabNavigation';
+import ProductNavigation, { ProductNativeStackParamList } from './ProductNavigation';
 
-export type RootStackParamList = {
-  Auth: {
-    screen: keyof AuthStackParamList;
-  };
-  Main: {
-    screen: keyof HomeTabParamList;
-  };
-  DishInternal: {
-    screen: keyof DishStackParamList;
-  };
+export type RootNativeStackParamList = {
+  Auth: NavigatorScreenParams<AuthNativeStackParamList>;
+  Main: NavigatorScreenParams<HomeTabParamList>;
+  ProductInternal: NavigatorScreenParams<ProductNativeStackParamList>;
 };
 
-const RootStack = createStackNavigator();
+const RootStack = createNativeStackNavigator<RootNativeStackParamList>();
 
 export default function RootNavigation() {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Auth" screenOptions={{ headerShown: false }}>
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="Auth" component={AuthNavigation} />
-        <RootStack.Screen name="Main" component={HomeTabNavigator} />
-        <RootStack.Screen name="DishInternal" component={DishNavigation} />
+        <RootStack.Screen name="Main" component={HomeTabNavigation} />
+        <RootStack.Screen name="ProductInternal" component={ProductNavigation} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

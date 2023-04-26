@@ -1,8 +1,10 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { ScreenInfo } from '../../components';
+import { Colors } from '../../models/theme';
 
 export default function ProfileScreen() {
   return (
@@ -12,7 +14,7 @@ export default function ProfileScreen() {
         <View style={styles.profile_option}>
           <Image style={styles.profile_image} source={require('../../assets/images/profile/profile.webp')} />
           <TouchableOpacity style={styles.profile_edit}>
-            <Icon name={'pencil'} size={25} color="#fff" />
+            <MaterialIcon name={'pencil'} size={25} color="#fff" />
           </TouchableOpacity>
         </View>
         <Text style={styles.profile_name}>Sebastian Yactayo</Text>
@@ -43,7 +45,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7f9',
+    backgroundColor: Colors.gray,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
   },
 
   profile_edit: {
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
     position: 'absolute',
     borderRadius: 100,
     padding: 10,

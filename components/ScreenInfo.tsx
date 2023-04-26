@@ -1,6 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
-import { Animated, Image, StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { Animated, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import { RootNativeStackParamList } from '../navigation/RootNavigation';
 
 interface Props {
   showBack?: boolean;
@@ -10,19 +12,28 @@ interface Props {
 }
 
 export default function ScreenInfo({ showBack, titleScreen, isLogged = true, showProfileImage = true }: Props) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootNativeStackParamList, 'Main'>>();
 
   return (
     <Animated.View style={styles.screen}>
       <View style={styles.screen_info}>
-        {showBack && <Icon name="chevron-back-outline" size={30} color="#000" onPress={() => navigation.goBack()} />}
+        {showBack && (
+          <Ionicons name="chevron-back-outline" size={30} color="#000" onPress={() => navigation.goBack()} />
+        )}
         <Text style={styles.screen_title}>{titleScreen}</Text>
       </View>
       {showProfileImage ? (
         isLogged ? (
-          <Image style={styles.screen_image} source={require('../assets/images/profile/profile_2.jpeg')} />
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Main', { screen: 'Profile' })}>
+            <Image style={styles.screen_image} source={require('../assets/images/profile/profile_2.jpeg')} />
+          </TouchableWithoutFeedback>
         ) : (
-          <Icon name="person-outline" size={30} color="#000" />
+          <Ionicons
+            name="person-outline"
+            size={30}
+            color="#000"
+            onPress={() => navigation.navigate('Main', { screen: 'Profile' })}
+          />
         )
       ) : null}
     </Animated.View>

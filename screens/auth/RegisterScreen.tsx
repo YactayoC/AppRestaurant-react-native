@@ -1,9 +1,9 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm, Controller } from 'react-hook-form';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { RootStackParamList } from '../../navigation/RootNavigation';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootNativeStackParamList } from '../../navigation/RootNavigation';
+import { Colors } from '../../models/theme';
 
 interface FormData {
   fullName: string;
@@ -12,12 +12,12 @@ interface FormData {
 }
 
 export default function RegisterScreen() {
+  const navigation = useNavigation<NavigationProp<RootNativeStackParamList, 'Auth'>>();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  const navigation = useNavigation<NavigationProp<RootStackParamList, 'Auth'>>();
 
   const onRegister = (data: FormData) => {
     console.log(data);
@@ -83,7 +83,14 @@ export default function RegisterScreen() {
           <Text style={styles.buttonText}>Registrarse</Text>
         </TouchableOpacity>
         <View style={styles.texts_options}>
-          <Text style={styles.text_option} onPress={() => navigation.navigate('Auth', { screen: 'Login' })}>
+          <Text
+            style={styles.text_option}
+            onPress={() =>
+              navigation.navigate('Auth', {
+                screen: 'Login',
+              })
+            }
+          >
             ¿Ya tienes cuenta? Inicia sesion
           </Text>
         </View>
@@ -97,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
   },
   logo: {
     position: 'absolute',
@@ -112,7 +119,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.white,
     borderTopEndRadius: 50,
     borderTopStartRadius: 50,
     paddingVertical: 30,
@@ -126,7 +133,7 @@ const styles = StyleSheet.create({
   form_input: {
     borderWidth: 2,
     borderStyle: 'solid',
-    borderColor: '#000000',
+    borderColor: Colors.black,
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 15,
@@ -134,15 +141,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   button: {
-    backgroundColor: '#000000',
-    color: '#FFFFFF',
+    backgroundColor: Colors.black,
+    color: Colors.white,
     borderRadius: 15,
     width: '85%',
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: Colors.white,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 20,
@@ -152,12 +159,12 @@ const styles = StyleSheet.create({
     rowGap: 10,
   },
   text_option: {
-    color: '#5A5A5A',
+    color: Colors.text_gray,
     fontSize: 17,
   },
   text_error: {
     position: 'absolute',
-    color: '#FF0000',
+    color: Colors.text_error,
     fontSize: 15,
     bottom: -20,
     left: 0,

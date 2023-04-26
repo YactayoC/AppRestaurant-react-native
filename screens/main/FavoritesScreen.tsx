@@ -1,7 +1,7 @@
-import { Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import IconFa from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View } from 'react-native';
 
 import { ProductFavoriteList, ScreenInfo, Search } from '../../components';
+import { Colors } from '../../models/theme';
 
 export default function FavoritsScreen() {
   const data = [
@@ -24,7 +24,7 @@ export default function FavoritsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7f9',
+    backgroundColor: Colors.gray,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },

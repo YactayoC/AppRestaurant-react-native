@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { ScreenInfo } from '../../components';
+import { Colors } from '../../models/theme';
 
 export default function CartScreen() {
   const [quantity, setQuantity] = useState(1);
@@ -14,7 +15,7 @@ export default function CartScreen() {
       <ScrollView showsVerticalScrollIndicator={false} bounces={false} alwaysBounceVertical={false}>
         <View style={styles.carts_products}>
           <View style={styles.cart_product}>
-            <Image style={styles.cart_product_image} source={require('../../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.cart_product_image} source={require('../../assets/images/products/main/main.jpg')} />
             <View style={styles.cart_product_text}>
               <Text style={styles.cart_product_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.cart_product_price}>
@@ -45,7 +46,7 @@ export default function CartScreen() {
           </View>
 
           <View style={styles.cart_product}>
-            <Image style={styles.cart_product_image} source={require('../../assets/images/dishes/main/main.jpg')} />
+            <Image style={styles.cart_product_image} source={require('../../assets/images/products/main/main.jpg')} />
             <View style={styles.cart_product_text}>
               <Text style={styles.cart_product_name}>Sopa de pescado y marisco peruana</Text>
               <View style={styles.cart_product_price}>
@@ -89,7 +90,7 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7f9',
+    backgroundColor: Colors.gray,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   cart_product: {
     flexDirection: 'row',
     columnGap: 20,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     borderRadius: 10,
     padding: 10,
   },
@@ -148,14 +149,14 @@ const styles = StyleSheet.create({
   },
 
   cart_product_options_button: {
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
     width: '100%',
     padding: 10,
     borderRadius: 10,
   },
 
   cart_product_options_button_text: {
-    color: '#fff',
+    color: Colors.white,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#DCDCDC',
+    borderColor: Colors.gray_2,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -209,7 +210,7 @@ const styles = StyleSheet.create({
   },
 
   pay: {
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
     width: '100%',
     padding: 10,
     borderRadius: 10,

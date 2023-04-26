@@ -1,5 +1,6 @@
 import { StyleSheet, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Colors } from '../models/theme';
 
 interface Props {
   placeholder: string;
@@ -17,7 +18,7 @@ export default function Search({ placeholder }: Props) {
 const styles = StyleSheet.create({
   search: {
     width: '100%',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: Colors.gray_3,
     position: 'relative',
     justifyContent: 'center',
     borderRadius: 15,

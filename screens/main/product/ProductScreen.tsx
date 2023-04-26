@@ -1,32 +1,33 @@
-import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFa from 'react-native-vector-icons/FontAwesome5';
 
 import { ScreenInfo } from '../../../components';
+import { Colors } from '../../../models/theme';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { ProductNativeStackParamList } from '../../../navigation/ProductNavigation';
 
 export default function ProductScreen() {
+  const route = useRoute<RouteProp<ProductNativeStackParamList, 'ProductDetail'>>();
+  const { product } = route.params;
+
   return (
     <View style={styles.container}>
       <ScreenInfo titleScreen="Detalles del plato" showBack={true} />
 
       <View style={styles.product}>
-        <Image style={styles.product_image} source={require('../../../assets/images/dishes/main/main.jpg')} />
+        <Image style={styles.product_image} source={{ uri: product.image }} />
         <View style={styles.product_header}>
-          <Text style={styles.product_name}>Ceviche Peruano</Text>
+          <Text style={styles.product_name}>{product.name}</Text>
           <TouchableOpacity>
             <IconFa name="heart" size={25} color="red" solid />
           </TouchableOpacity>
         </View>
-        <Text style={styles.product_description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare sem sed leo commodo tempor. Maecenas
-          dapibus tempor erat id dignissim. Suspendisse quis rhoncus ante, ac congue leo. Sed in pretium risus, sed
-          vehicula sem.
-        </Text>
+        <Text style={styles.product_description}>{product.description}</Text>
         <View style={styles.product_data}>
           <View style={styles.product_data_price}>
             <Text style={styles.product_data_price_money}>S/</Text>
-            <Text style={styles.product_data_price_number}>8.00</Text>
+            <Text style={styles.product_data_price_number}>{product.price.toFixed(2)}</Text>
           </View>
           <View style={styles.product_data_quantity}>
             <TouchableOpacity style={styles.cart_product_options_quantity_icon}>
@@ -50,7 +51,7 @@ export default function ProductScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7f9',
+    backgroundColor: Colors.gray,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
 
   product_description: {
     fontSize: 18,
-    color: '#6F6F6F',
+    color: Colors.text_description,
     width: '90%',
   },
 
@@ -119,19 +120,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#DCDCDC',
+    borderColor: Colors.gray_2,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   product_button: {
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
     paddingVertical: 12,
     borderRadius: 10,
   },
 
   product_button_text: {
-    color: '#fff',
+    color: Colors.text_white,
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'bold',

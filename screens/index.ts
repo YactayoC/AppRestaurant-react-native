@@ -5,5 +5,5 @@ export { default as FavoritesScreen } from './main/FavoritesScreen';
 export { default as HomeScreen } from './main/HomeScreen';
 export { default as OffersScreen } from './main/OffersScreen';
 export { default as ProfileScreen } from './main/ProfileScreen';
-export { default as ProductScreen } from './main/dish/ProductScreen';
-export { default as ProductsCategoryScreen } from './main/dish/ProductsCategoryScreen';
+export { default as ProductScreen } from './main/product/ProductScreen';
+export { default as ProductsCategoryScreen } from './main/product/ProductsCategoryScreen';
