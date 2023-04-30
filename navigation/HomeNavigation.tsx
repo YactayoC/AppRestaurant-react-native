@@ -33,9 +33,12 @@ function ViewWithIcon({ focused, name, type }: ViewWithIconProps) {
   );
 }
 
-export default function HomeTabNavigation() {
+export default function HomeNavigation() {
   return (
-    <MainTab.Navigator initialRouteName="Home" screenOptions={{ tabBarShowLabel: false, headerShown: false }}>
+    <MainTab.Navigator
+      initialRouteName="Home"
+      screenOptions={{ tabBarShowLabel: false, headerShown: false, tabBarHideOnKeyboard: true }}
+    >
       <MainTab.Screen
         name="Home"
         component={HomeScreen}

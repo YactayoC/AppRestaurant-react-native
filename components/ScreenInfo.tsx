@@ -25,7 +25,10 @@ export default function ScreenInfo({ showBack, titleScreen, isLogged = true, sho
       {showProfileImage ? (
         isLogged ? (
           <TouchableWithoutFeedback onPress={() => navigation.navigate('Main', { screen: 'Profile' })}>
-            <Image style={styles.screen_image} source={require('../assets/images/profile/profile_2.jpeg')} />
+            <Image
+              style={styles.screen_image}
+              source={{ uri: 'https://i.ytimg.com/vi/kpqWRbRl-Ok/maxresdefault.jpg' }}
+            />
           </TouchableWithoutFeedback>
         ) : (
           <Ionicons

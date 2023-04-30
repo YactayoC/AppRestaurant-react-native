@@ -7,3 +7,6 @@ export { default as OffersScreen } from './main/OffersScreen';
 export { default as ProfileScreen } from './main/ProfileScreen';
 export { default as ProductScreen } from './main/product/ProductScreen';
 export { default as ProductsCategoryScreen } from './main/product/ProductsCategoryScreen';
+export { default as HistoryOrderScreen } from './main/profile/HistoryOrderScreen';
+export { default as RecentOrderScreen } from './main/profile/RecentOrderScreen';
+export { default as SettingScreen } from './main/profile/SettingScreen';

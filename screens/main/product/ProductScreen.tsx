@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFa from 'react-native-vector-icons/FontAwesome5';
 
-import { ScreenInfo } from '../../../components';
+import { CustomSafeAreaView, ScreenInfo } from '../../../components';
 import { Colors } from '../../../models/theme';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ProductNativeStackParamList } from '../../../navigation/ProductNavigation';
@@ -12,9 +12,8 @@ export default function ProductScreen() {
   const { product } = route.params;
 
   return (
-    <View style={styles.container}>
+    <CustomSafeAreaView>
       <ScreenInfo titleScreen="Detalles del plato" showBack={true} />
-
       <View style={styles.product}>
         <Image style={styles.product_image} source={{ uri: product.image }} />
         <View style={styles.product_header}>
@@ -44,18 +43,11 @@ export default function ProductScreen() {
           <Text style={styles.product_button_text}>Agregar al carrito</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </CustomSafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.gray,
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-  },
-
   product: {
     marginTop: 30,
     rowGap: 30,
