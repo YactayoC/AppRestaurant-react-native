@@ -1,3 +1,4 @@
+export { default as Loader } from './Loader';
 export { default as ScreenInfo } from './ScreenInfo';
 export { default as Search } from './Search';
 export { default as CustomSafeAreaView } from './layout/CustomSafeAreaView';
