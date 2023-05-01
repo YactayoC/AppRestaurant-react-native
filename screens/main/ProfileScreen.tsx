@@ -48,7 +48,10 @@ export default function ProfileScreen() {
           <Icon name={'call-outline'} size={30} color="#000" />
           <Text style={styles.options_element_text}>Contactanos</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.options_element}>
+        <TouchableOpacity
+          style={styles.options_element}
+          onPress={() => navigation.navigate('Auth', { screen: 'Login' })}
+        >
           <Icon name={'exit-outline'} size={30} color="#000" />
           <Text style={styles.options_element_text}>Salir</Text>
         </TouchableOpacity>
