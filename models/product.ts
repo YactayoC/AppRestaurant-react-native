@@ -1,9 +1,17 @@
 export interface Product {
+  id: string;
   name: string;
   description: string;
-  image: string;
-  category: string;
   price: number;
+  category: string;
+  image: string;
   inOffer: boolean;
-  discount: number;
+  offerPirce: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Category {
+  category: string;
+  image: string;
 }
