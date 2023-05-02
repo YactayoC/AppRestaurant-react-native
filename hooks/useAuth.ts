@@ -1,25 +1,22 @@
 import { useState } from 'react';
 import { AxiosError } from 'axios';
+import { useSetAtom } from 'jotai';
 
-import {
-  AuthApiResponse,
-  AuthFormLogin,
-  AuthFormRegister,
-  AuthLoginResponse,
-  AuthRegisterResponse,
-} from '../interfaces';
+import { ApiResponse, AuthFormLogin, AuthFormRegister, AuthLoginResponse, AuthRegisterResponse } from '../interfaces';
 import AuthService from '../services/auth';
+import { authAtom } from '../store';
 
 export const useAuth = () => {
   const authService = new AuthService();
-
+  const setUser = useSetAtom(authAtom);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (data: AuthFormLogin): Promise<AuthApiResponse<AuthLoginResponse>> => {
+  const handleLogin = async (data: AuthFormLogin): Promise<ApiResponse<AuthLoginResponse>> => {
     try {
       setIsLoading(true);
       const response = await authService.login(data);
       if (response) setIsLoading(false);
+      setUser(response);
       return { data: response };
     } catch (error) {
       setIsLoading(false);
@@ -27,7 +24,7 @@ export const useAuth = () => {
     }
   };
 
-  const handleRegister = async (data: AuthFormRegister): Promise<AuthApiResponse<AuthRegisterResponse>> => {
+  const handleRegister = async (data: AuthFormRegister): Promise<ApiResponse<AuthRegisterResponse>> => {
     try {
       setIsLoading(true);
       const response = await authService.register(data);
@@ -39,9 +36,14 @@ export const useAuth = () => {
     }
   };
 
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return {
     handleLogin,
     handleRegister,
+    handleLogout,
     isLoading,
   };
 };
