@@ -1,10 +1,5 @@
 import { Client, User } from '../models';
 
-export interface AuthApiResponse<T> {
-  data?: T;
-  errorMessage?: string;
-}
-
 export interface AuthFormLogin {
   email: string;
   password: string;
