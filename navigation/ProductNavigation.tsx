@@ -1,12 +1,17 @@
 import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ProductScreen, ProductsCategoryScreen } from '../screens';
+import { ProductScreen, ProductsCategoryScreen, ProductsSearchScreen } from '../screens';
 import { Product } from '../models';
 
 export type ProductNativeStackParamList = {
   ProductDetail: {
     product: Product;
   };
-  ProductsCategory: undefined;
+  ProductsCategory: {
+    category: string;
+  };
+  ProductsSearch: {
+    valueSearch: string;
+  };
 };
 
 export type ProductNativeStackNavigationProps = NativeStackNavigationProp<ProductNativeStackParamList>;
@@ -17,6 +22,7 @@ export default function ProductNavigation() {
     <InternalProduct.Navigator screenOptions={{ headerShown: false }}>
       <InternalProduct.Screen name="ProductDetail" component={ProductScreen} />
       <InternalProduct.Screen name="ProductsCategory" component={ProductsCategoryScreen} />
+      <InternalProduct.Screen name="ProductsSearch" component={ProductsSearchScreen} />
     </InternalProduct.Navigator>
   );
 }

@@ -1,18 +1,22 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Animated, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import IconFeather from 'react-native-vector-icons/Feather';
+import { useAtomValue } from 'jotai';
 
 import { RootNativeStackParamList } from '../navigation/RootNavigation';
+import { Colors } from '../models';
+import { authAtom } from '../store';
 
 interface Props {
   showBack?: boolean;
   titleScreen: string;
-  isLogged?: boolean;
   showProfileImage?: boolean;
 }
 
-export default function ScreenInfo({ showBack, titleScreen, isLogged = true, showProfileImage = true }: Props) {
+export default function ScreenInfo({ showBack, titleScreen, showProfileImage = true }: Props) {
   const navigation = useNavigation<NavigationProp<RootNativeStackParamList, 'Main'>>();
+  const auth = useAtomValue(authAtom);
 
   return (
     <Animated.View style={styles.screen}>
@@ -23,20 +27,12 @@ export default function ScreenInfo({ showBack, titleScreen, isLogged = true, sho
         <Text style={styles.screen_title}>{titleScreen}</Text>
       </View>
       {showProfileImage ? (
-        isLogged ? (
+        auth?.client?.profile ? (
           <TouchableWithoutFeedback onPress={() => navigation.navigate('Main', { screen: 'Profile' })}>
-            <Image
-              style={styles.screen_image}
-              source={{ uri: 'https://i.ytimg.com/vi/kpqWRbRl-Ok/maxresdefault.jpg' }}
-            />
+            <Image style={styles.screen_image} source={{ uri: auth?.client?.profile }} />
           </TouchableWithoutFeedback>
         ) : (
-          <Ionicons
-            name="person-outline"
-            size={30}
-            color="#000"
-            onPress={() => navigation.navigate('Main', { screen: 'Profile' })}
-          />
+          <IconFeather name="user" size={30} color="#000" />
         )
       ) : null}
     </Animated.View>
@@ -59,6 +55,7 @@ const styles = StyleSheet.create({
   screen_title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: Colors.black,
   },
 
   screen_image: {

@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFa from 'react-native-vector-icons/FontAwesome5';
 
 import { CustomSafeAreaView, ScreenInfo } from '../../../components';
 import { Colors } from '../../../models/theme';
-import { RouteProp, useRoute } from '@react-navigation/native';
 import { ProductNativeStackParamList } from '../../../navigation/ProductNavigation';
 
 export default function ProductScreen() {
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   product_name: {
     fontSize: 28,
     fontWeight: 'bold',
+    textTransform: 'capitalize',
   },
 
   product_description: {

@@ -32,7 +32,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <CustomSafeAreaView styleCustom={{ alignItems: 'center', rowGap: 30 }}>
+    <CustomSafeAreaView styleCustom={{ alignItems: 'center', rowGap: 30, paddingBottom: 0 }}>
       <Image
         style={styles.logo}
         source={{
@@ -113,12 +113,6 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   logo: {
     width: 250,
     height: 250,

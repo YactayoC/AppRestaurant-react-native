@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import IconFa from 'react-native-vector-icons/FontAwesome5';
+import IconFeather from 'react-native-vector-icons/Feather';
 
 import { RootNativeStackParamList } from '../../navigation/RootNavigation';
 import { Product as ProductI } from '../../models';
@@ -32,7 +32,7 @@ export default function Product({ product, areProductsOnOffert = false }: Props)
               <View style={styles.product_price_discount}>
                 <Text style={styles.product_price_discount_money}>S/</Text>
                 <Text style={styles.product_price_discount_number}>
-                  {product.price - product.price * product.discount}
+                  {product.price - product.price * product.offerPirce}
                 </Text>
               </View>
             </View>
@@ -44,7 +44,7 @@ export default function Product({ product, areProductsOnOffert = false }: Props)
           )}
 
           <TouchableOpacity style={styles.product_cart}>
-            <IconFa name={'shopping-bag'} size={20} color="#ffffff" />
+            <IconFeather name={'shopping-bag'} size={20} color={Colors.white} />
           </TouchableOpacity>
         </View>
       </View>
@@ -63,14 +63,18 @@ const styles = StyleSheet.create({
     padding: 10,
     rowGap: 10,
     height: 110,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   product_name: {
     width: '90%',
     fontSize: 16,
     height: 40,
+    textTransform: 'capitalize',
+    color: Colors.black,
   },
   product_image: {
-    width: '100%',
+    flex: 1,
     height: 100,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -97,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     padding: 10,
     borderRadius: 50,
+    width: 40,
   },
   // product price offert
   product_price_offert: {

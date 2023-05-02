@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconFa from 'react-native-vector-icons/FontAwesome5';
+import IconFeather from 'react-native-vector-icons/Feather';
 
 import { CartScreen, FavoritesScreen, HomeScreen, OffersScreen, ProfileScreen } from '../screens';
 
@@ -16,18 +16,18 @@ export type HomeTabParamList = {
 interface ViewWithIconProps {
   focused: boolean;
   name: string;
-  type: 'Material' | 'Fa';
+  type: 'Material' | 'Feather';
 }
 
 const MainTab = createBottomTabNavigator<HomeTabParamList>();
 
 function ViewWithIcon({ focused, name, type }: ViewWithIconProps) {
   return (
-    <View style={[styles.containerTab, { backgroundColor: focused ? 'black' : 'white' }]}>
+    <View style={[styles.containerTab, { backgroundColor: focused ? '#323643' : 'white' }]}>
       {type == 'Material' ? (
-        <MaterialIcon name={name} color={focused ? 'white' : 'black'} size={25} />
+        <MaterialIcon name={name} color={focused ? 'white' : '#323643'} size={25} />
       ) : (
-        <IconFa name={'shopping-bag'} color={focused ? 'white' : 'black'} size={23} />
+        <IconFeather name={name} color={focused ? 'white' : '#323643'} size={23} />
       )}
     </View>
   );
@@ -37,41 +37,45 @@ export default function HomeNavigation() {
   return (
     <MainTab.Navigator
       initialRouteName="Home"
-      screenOptions={{ tabBarShowLabel: false, headerShown: false, tabBarHideOnKeyboard: true }}
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerShown: false,
+        tabBarHideOnKeyboard: true,
+      }}
     >
       <MainTab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="home" type="Material" />,
+          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="home" type="Feather" />,
         }}
       />
       <MainTab.Screen
         name="Favorites"
         component={FavoritesScreen}
         options={{
-          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="heart" type="Material" />,
+          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="heart-outline" type="Material" />,
         }}
       />
       <MainTab.Screen
         name="Offers"
         component={OffersScreen}
         options={{
-          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="sale" type="Material" />,
+          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="percent" type="Feather" />,
         }}
       />
       <MainTab.Screen
         name="Cart"
         component={CartScreen}
         options={{
-          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="shopping-bag" type="Fa" />,
+          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="shopping-bag" type="Feather" />,
         }}
       />
       <MainTab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="account" type="Material" />,
+          tabBarIcon: ({ focused }) => <ViewWithIcon focused={focused} name="user" type="Feather" />,
         }}
       />
     </MainTab.Navigator>
@@ -84,5 +88,6 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
 });

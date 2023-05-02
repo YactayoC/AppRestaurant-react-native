@@ -2,23 +2,30 @@ import { Image, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useAtomValue } from 'jotai';
 
 import { CustomSafeAreaView, ScreenInfo } from '../../components';
 import { Colors } from '../../models/theme';
 import { RootNativeStackParamList } from '../../navigation/RootNavigation';
+import { authAtom } from '../../store';
+import { useAuth } from '../../hooks';
 
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootNativeStackParamList>>();
+  const auth = useAtomValue(authAtom);
+  const { handleLogout } = useAuth();
+
+  const onLogout = () => {
+    handleLogout();
+    navigation.navigate('Auth', { screen: 'Login' });
+  };
 
   return (
     <CustomSafeAreaView>
       <ScreenInfo titleScreen="Perfil" showProfileImage={false} />
       <View style={styles.profile}>
         <View style={styles.profile_option}>
-          <Image
-            style={styles.profile_image}
-            source={{ uri: 'https://i.ytimg.com/vi/kpqWRbRl-Ok/maxresdefault.jpg' }}
-          />
+          <Image style={styles.profile_image} source={{ uri: auth?.client?.profile }} />
           <TouchableOpacity
             style={styles.profile_edit}
             onPress={() => navigation.navigate('ProfileInternal', { screen: 'Setting' })}
@@ -26,7 +33,7 @@ export default function ProfileScreen() {
             <MaterialIcon name={'pencil'} size={25} color="#fff" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.profile_name}>Sebastian Yactayo</Text>
+        <Text style={styles.profile_name}>{auth?.client?.fullname}</Text>
       </View>
 
       <View style={styles.options}>
@@ -48,10 +55,7 @@ export default function ProfileScreen() {
           <Icon name={'call-outline'} size={30} color="#000" />
           <Text style={styles.options_element_text}>Contactanos</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.options_element}
-          onPress={() => navigation.navigate('Auth', { screen: 'Login' })}
-        >
+        <TouchableOpacity style={styles.options_element} onPress={onLogout}>
           <Icon name={'exit-outline'} size={30} color="#000" />
           <Text style={styles.options_element_text}>Salir</Text>
         </TouchableOpacity>

@@ -18,9 +18,8 @@ export default function CustomSafeAreaView({ children, styleCustom }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.gray,
+    backgroundColor: Colors.gray_background,
     paddingTop: 20,
-    paddingBottom: 20,
     paddingHorizontal: 20,
   },
 });

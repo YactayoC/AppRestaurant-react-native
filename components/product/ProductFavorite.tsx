@@ -36,7 +36,7 @@ export default function ProductFavorite({ product }: Props) {
         <View style={styles.product_data}>
           <View style={styles.product_price}>
             <Text style={styles.product_price_money}>S/</Text>
-            <Text style={styles.product_price_number}>{product.price}</Text>
+            <Text style={styles.product_price_number}>{product.price.toFixed(2)}</Text>
           </View>
           <TouchableOpacity style={styles.product_cart}>
             <IconFa name={'shopping-bag'} size={20} color="#ffffff" />
@@ -50,6 +50,7 @@ export default function ProductFavorite({ product }: Props) {
 const styles = StyleSheet.create({
   product_main: {
     width: '100%',
+    height: 'auto',
     marginBottom: 20,
   },
   product_image: {
@@ -63,6 +64,8 @@ const styles = StyleSheet.create({
     padding: 10,
     rowGap: 10,
     height: 'auto',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   product_text: {
     flexDirection: 'row',
@@ -101,5 +104,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     padding: 10,
     borderRadius: 50,
+    width: 40,
   },
 });

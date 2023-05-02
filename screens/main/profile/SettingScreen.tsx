@@ -2,14 +2,18 @@ import { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useAtomValue } from 'jotai';
 
 import { Colors } from '../../../models';
 import { CustomSafeAreaView, ScreenInfo } from '../../../components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { authAtom } from '../../../store';
 
 export default function SettingScreen() {
   const [imageUri, setImageUri] = useState<String>('');
-  const [isSecureTextEntry, setIsSecureTextEntry] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const auth = useAtomValue(authAtom);
 
   const handlePickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -39,48 +43,54 @@ export default function SettingScreen() {
             {imageUri ? (
               <Image style={styles.profile_image} source={{ uri: imageUri.toString() }} />
             ) : (
-              <Image
-                style={styles.profile_image}
-                source={{ uri: 'https://i.ytimg.com/vi/kpqWRbRl-Ok/maxresdefault.jpg' }}
-              />
+              <Image style={styles.profile_image} source={{ uri: auth?.client?.profile }} />
             )}
           </TouchableOpacity>
         </View>
 
         <KeyboardAwareScrollView style={styles.form} showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.form_group}>
-            <TextInput style={styles.form_group_input} placeholder="Nombres" value="Sebastian Yactayo" />
+            <TextInput style={styles.form_group_input} placeholder="Nombres" value={auth?.client?.fullname} />
           </View>
           <View style={styles.form_group}>
-            <TextInput style={styles.form_group_input} placeholder="Direccion" value="Jr. Los Conquistadores" />
-          </View>
-          <View style={styles.form_group}>
-            <TextInput style={styles.form_group_input} placeholder="Celular" value="979225922" />
+            <TextInput style={styles.form_group_input} placeholder="Direccion" value={auth?.client?.direction || ''} />
           </View>
           <View style={styles.form_group}>
             <TextInput
               style={styles.form_group_input}
-              placeholder="Contraseña actual"
-              secureTextEntry={isSecureTextEntry}
+              keyboardType="number-pad"
+              placeholder="Celular"
+              value={auth?.client?.phone || ''}
             />
+          </View>
+          <View style={styles.form_group}>
+            <TextInput
+              style={styles.form_group_input}
+              placeholder="Direccion"
+              value={auth?.client?.user.email}
+              editable={false}
+            />
+          </View>
+          <View style={styles.form_group}>
+            <TextInput style={styles.form_group_input} placeholder="Contraseña actual" secureTextEntry={showPassword} />
             <MaterialIcon
               name="eye"
               size={24}
               style={styles.form_icon}
-              onLongPress={() => setIsSecureTextEntry(false)}
+              onPress={() => setShowPassword(!showPassword)}
             />
           </View>
           <View style={styles.form_group}>
             <TextInput
               style={styles.form_group_input}
               placeholder="Contraseña nueva"
-              secureTextEntry={isSecureTextEntry}
+              secureTextEntry={showPasswordConfirm}
             />
             <MaterialIcon
               name="eye"
               size={24}
               style={styles.form_icon}
-              onLongPress={() => setIsSecureTextEntry(false)}
+              onPress={() => setShowPasswordConfirm(!showPasswordConfirm)}
             />
           </View>
           <TouchableOpacity style={styles.form_button}>
@@ -113,8 +123,10 @@ const styles = StyleSheet.create({
     margin: 'auto',
   },
   form_group: {
-    rowGap: 15,
     marginBottom: 25,
+    position: 'relative',
+    height: 40,
+    justifyContent: 'center',
   },
   form_group_label: {
     fontSize: 16,
@@ -129,7 +141,9 @@ const styles = StyleSheet.create({
   },
   form_icon: {
     position: 'absolute',
+    width: 24,
     right: 10,
+    height: 24,
   },
   form_button: {
     backgroundColor: Colors.black,

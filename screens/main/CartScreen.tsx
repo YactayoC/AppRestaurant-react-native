@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginTop: 20,
+    marginBottom: 20,
   },
   pay_text: {
     color: '#fff',
