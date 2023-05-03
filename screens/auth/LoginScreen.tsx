@@ -8,9 +8,12 @@ import { Colors } from '../../models';
 import { CustomSafeAreaView, Loader } from '../../components';
 import { AuthFormLogin } from '../../interfaces';
 import { useAuth } from '../../hooks';
+import { useAtomValue } from 'jotai';
+import { authAtom } from '../../store';
 
 export default function LoginScreen() {
-  const { handleLogin, isLoading } = useAuth();
+  const { handleLogin } = useAuth();
+  const { isLoading } = useAtomValue(authAtom);
   const navigation = useNavigation<NavigationProp<RootNativeStackParamList, 'Auth'>>();
   const {
     control,

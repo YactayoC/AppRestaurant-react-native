@@ -3,6 +3,7 @@ export { default as Search } from './Search';
 export { default as CustomSafeAreaView } from './layout/CustomSafeAreaView';
 export { default as Loader } from './loader/Loader';
 export { default as Modal } from './modal/Modal';
+export { default as NotAuth } from './modal/NotAuth';
 export { default as OrderHistory } from './order/OrderHistory';
 export { default as OrderList } from './order/OrderList';
 export { default as OrderRecent } from './order/OrderRecent';
