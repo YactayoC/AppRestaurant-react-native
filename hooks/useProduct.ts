@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useSetAtom } from 'jotai';
 
@@ -10,13 +11,17 @@ export const useProduct = () => {
   const productService = new ProductService();
   const setProducts = useSetAtom(productsAtom);
   const setCategories = useSetAtom(categoriesAtom);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleGetProducts = async (): Promise<ApiResponse<Product[]>> => {
     try {
+      setIsLoading(true);
       const data = await productService.getProducts();
       setProducts(data);
+      setIsLoading(false);
       return { data };
     } catch (error) {
+      setIsLoading(false);
       return { errorMessage: (error as AxiosError).message };
     }
   };
@@ -44,5 +49,6 @@ export const useProduct = () => {
     handleGetProducts,
     handleGetCategories,
     handleGetProductByTerm,
+    isLoading,
   };
 };

@@ -6,24 +6,29 @@ import Category from './Category';
 
 interface Props {
   categories: CategoryI[];
+  isLoading: boolean;
 }
 
-export default function CategoryList({ categories }: Props) {
+export default function CategoryList({ categories, isLoading }: Props) {
   return (
     <View style={styles.category}>
       <Text style={styles.category_title}>Categorias</Text>
       <View style={styles.category_card_container}>
-        {categories && categories.length > 0 ? (
-          <FlatList
-            data={categories}
-            renderItem={({ item }) => <Category category={item} />}
-            keyExtractor={(item) => item.category}
-            style={{ flex: 1 }}
-            horizontal={true}
-            nestedScrollEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            bounces={false}
-          />
+        {!isLoading ? (
+          categories.length !== 0 ? (
+            <FlatList
+              data={categories}
+              renderItem={({ item }) => <Category category={item} />}
+              keyExtractor={(item) => item.category}
+              style={{ flex: 1 }}
+              horizontal={true}
+              nestedScrollEnabled={true}
+              showsHorizontalScrollIndicator={false}
+              bounces={false}
+            />
+          ) : (
+            <Text style={styles.text_no_categories}>No hay categorias que mostrar</Text>
+          )
         ) : (
           <Loader isLoading={true} isLoaderScreen={false} colorLoader="#bfe3ff" />
         )}
@@ -46,5 +51,9 @@ const styles = StyleSheet.create({
   category_card_container: {
     flexDirection: 'row',
     width: '100%',
+  },
+  text_no_categories: {
+    color: Colors.black,
+    fontSize: 18,
   },
 });
