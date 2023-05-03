@@ -43,31 +43,35 @@ export default function SettingScreen() {
             {imageUri ? (
               <Image style={styles.profile_image} source={{ uri: imageUri.toString() }} />
             ) : (
-              <Image style={styles.profile_image} source={{ uri: auth?.client?.profile }} />
+              <Image style={styles.profile_image} source={{ uri: auth.data?.client?.profile }} />
             )}
           </TouchableOpacity>
         </View>
 
         <KeyboardAwareScrollView style={styles.form} showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.form_group}>
-            <TextInput style={styles.form_group_input} placeholder="Nombres" value={auth?.client?.fullname} />
+            <TextInput style={styles.form_group_input} placeholder="Nombres" value={auth.data?.client?.fullname} />
           </View>
           <View style={styles.form_group}>
-            <TextInput style={styles.form_group_input} placeholder="Direccion" value={auth?.client?.direction || ''} />
+            <TextInput
+              style={styles.form_group_input}
+              placeholder="Direccion"
+              value={auth.data?.client?.direction || ''}
+            />
           </View>
           <View style={styles.form_group}>
             <TextInput
               style={styles.form_group_input}
               keyboardType="number-pad"
               placeholder="Celular"
-              value={auth?.client?.phone || ''}
+              value={auth.data?.client?.phone || ''}
             />
           </View>
           <View style={styles.form_group}>
             <TextInput
               style={styles.form_group_input}
               placeholder="Direccion"
-              value={auth?.client?.user.email}
+              value={auth.data?.client?.user.email}
               editable={false}
             />
           </View>

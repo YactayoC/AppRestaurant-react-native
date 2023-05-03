@@ -9,7 +9,7 @@ export default function HomeScreen() {
   const { handleGetProducts, handleGetCategories } = useProduct();
   const { data, isLoading } = useAtomValue(productsAtom);
   const categories = useAtomValue(categoriesAtom);
-  const user = useAtomValue(authAtom);
+  const auth = useAtomValue(authAtom);
 
   useEffect(() => {
     onGetProducts();
@@ -26,7 +26,7 @@ export default function HomeScreen() {
 
   return (
     <CustomSafeAreaView>
-      <ScreenInfo titleScreen={`Hola ${user?.client ? user?.client.fullname : ''} 👋`} />
+      <ScreenInfo titleScreen={`Hola ${auth.data?.client ? auth.data?.client.fullname : ''} 👋`} />
       <Search placeholder="Que te gustaria comer hoy?" />
       <CategoryList categories={categories} isLoading={isLoading} />
       <ProductList title="Platos principales" products={data} isLoading={isLoading} />
