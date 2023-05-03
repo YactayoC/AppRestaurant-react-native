@@ -3,17 +3,18 @@ import { CustomSafeAreaView, Modal, ProductList, ScreenInfo, Search } from '../.
 import { authAtom, productsAtom } from '../../store';
 
 export default function OffersScreen() {
-  const products = useAtomValue(productsAtom);
+  const { data, isLoading } = useAtomValue(productsAtom);
   const user = useAtomValue(authAtom);
 
   return (
     <CustomSafeAreaView>
-      <ScreenInfo titleScreen="Ofertas" isLogged={true} />
+      <ScreenInfo titleScreen="Ofertas" />
       <Search placeholder="Busca platos en ofertas" />
       <ProductList
         title="Platos en oferta"
-        products={products.filter((product) => product.inOffer)}
+        products={data.filter((product) => product.inOffer)}
         areProductsOnOffert={true}
+        isLoading={isLoading}
       />
 
       <Modal isVisible={!user?.client} />
