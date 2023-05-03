@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { Bounce, Grid } from 'react-native-animated-spinkit';
+import { Bounce, Chase } from 'react-native-animated-spinkit';
 import ReactNativeModal from 'react-native-modal';
 
 interface Props {
@@ -19,7 +19,7 @@ export default function Loader({ isLoading, isLoaderScreen = true, colorLoader =
         </ReactNativeModal>
       ) : (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Grid size={80} color={colorLoader} />
+          <Chase size={80} color={colorLoader} />
         </View>
       )}
     </>
