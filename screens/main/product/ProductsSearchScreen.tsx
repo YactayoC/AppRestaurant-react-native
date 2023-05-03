@@ -10,13 +10,13 @@ import { ProductNativeStackParamList } from '../../../navigation/ProductNavigati
 export default function ProductsSearchScreen() {
   const route = useRoute<RouteProp<ProductNativeStackParamList, 'ProductsSearch'>>();
   const { valueSearch } = route.params;
-  const products = useAtomValue(productsAtom);
-  const productsBySearch = products.filter((product) => product.name.toLowerCase().includes(valueSearch.toLowerCase()));
+  const { data, isLoading } = useAtomValue(productsAtom);
+  const productsBySearch = data.filter((product) => product.name.toLowerCase().includes(valueSearch.toLowerCase()));
 
   return (
     <CustomSafeAreaView>
       <ScreenInfo titleScreen="Resultados de busqueda" showBack={true} />
-      <ProductList title="" products={productsBySearch} />
+      <ProductList title="" products={productsBySearch} isLoading={isLoading} />
     </CustomSafeAreaView>
   );
 }

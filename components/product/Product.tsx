@@ -31,9 +31,7 @@ export default function Product({ product, areProductsOnOffert = false }: Props)
               </View>
               <View style={styles.product_price_discount}>
                 <Text style={styles.product_price_discount_money}>S/</Text>
-                <Text style={styles.product_price_discount_number}>
-                  {product.price - product.price * product.offerPirce}
-                </Text>
+                <Text style={styles.product_price_discount_number}>{product.offerPrice}</Text>
               </View>
             </View>
           ) : (

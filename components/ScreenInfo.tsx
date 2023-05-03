@@ -27,9 +27,9 @@ export default function ScreenInfo({ showBack, titleScreen, showProfileImage = t
         <Text style={styles.screen_title}>{titleScreen}</Text>
       </View>
       {showProfileImage ? (
-        auth?.client?.profile ? (
+        auth.data?.client?.profile ? (
           <TouchableWithoutFeedback onPress={() => navigation.navigate('Main', { screen: 'Profile' })}>
-            <Image style={styles.screen_image} source={{ uri: auth?.client?.profile }} />
+            <Image style={styles.screen_image} source={{ uri: auth.data?.client?.profile }} />
           </TouchableWithoutFeedback>
         ) : (
           <IconFeather name="user" size={30} color="#000" />

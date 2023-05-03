@@ -6,7 +6,7 @@ import { ProductNativeStackParamList } from '../../../navigation/ProductNavigati
 import { productsAtom } from '../../../store';
 
 export default function ProductsCategoryScreen() {
-  const products = useAtomValue(productsAtom);
+  const { data, isLoading } = useAtomValue(productsAtom);
   const route = useRoute<RouteProp<ProductNativeStackParamList, 'ProductsCategory'>>();
   const { category } = route.params;
 
@@ -14,7 +14,7 @@ export default function ProductsCategoryScreen() {
     <CustomSafeAreaView>
       <ScreenInfo titleScreen="Categoria de mariscos" showBack={true} />
       <Search placeholder="Que te gustaria comer hoy?" />
-      <ProductList title="" products={products.filter((product) => product.category === category)} />
+      <ProductList title="" products={data.filter((product) => product.category === category)} isLoading={isLoading} />
     </CustomSafeAreaView>
   );
 }

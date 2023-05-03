@@ -6,7 +6,7 @@ export interface Product {
   category: string;
   image: string;
   inOffer: boolean;
-  offerPirce: number;
+  offerPrice: number;
   createdAt: Date;
   updatedAt: Date;
 }
